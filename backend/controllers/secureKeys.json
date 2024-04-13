@@ -1,0 +1,1 @@
+{"accessKeyId":"adada42424","secretAccessKey":"42452525252111"}
