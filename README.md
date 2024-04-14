@@ -1,9 +1,7 @@
 # User Management System (MERN Stack)
 
 ## LIVE LINK 
-     https://employee-managment-three.vercel.app
-         [response might have delay due to free services]
-
+    
 
 The Employee Management System is a web application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. It enables users to perform CRUD (Create, Read, Update, Delete) operations related to employee records efficiently.
 
@@ -28,7 +26,7 @@ To run the Employee Management System on your local machine, follow these steps:
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/Nikhilkajota03/employee-managment.git 
+   git clone 
    ```
 
 2. Navigate to the project directory:
