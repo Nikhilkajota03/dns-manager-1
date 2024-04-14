@@ -37,7 +37,7 @@ const Signin = () => {
         message.success("User logged in");
 
         localStorage.setItem("jwt", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user", JSON.stringify(data.userId));
 
         setemail("");
         setpassword("");

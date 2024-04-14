@@ -11,7 +11,7 @@ const PrivateRoute = () => {
     if (token) {
       axios
         .post(
-          "https://employee-managment-mslv.onrender.com/api/v1/user/verify",
+          "http://localhost:8080/api/v1/users/verify",
           null,
           {
             headers: {
@@ -22,6 +22,7 @@ const PrivateRoute = () => {
         .then((response) => {
           if (response.data.authenticated) {
             setAuthenticated(true);
+            console.log(response);
           } else {
             setAuthenticated(false);
           }

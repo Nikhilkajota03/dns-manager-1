@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = ({ hostedName , hostedZoneId}) => {
+const DomainNavbar = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -40,43 +40,46 @@ const Navbar = ({ hostedName , hostedZoneId}) => {
           >
             <nav>
               <ul class="md:flex items-center justify-between text-base text-blue-600 pt-4 md:pt-0">
-              <li>
+                <li>
                   <a
                     class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
                     href="#"
                     onClick={()=> navigate("/")}
                   >
-                    Home
+                    Hosted Zones
                   </a>
                 </li>
                 <li>
                   <a
                     class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
                     href="#"
-                    onClick={()=> navigate(`/dns/${hostedName}/${hostedZoneId}`)}
+                    onClick={()=> navigate("/SingleDomain")}
                   >
-                    DNS List
+                    Add single Domain
                   </a>
                 </li>
+                
                 <li>
                   <a
                     class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
                     href="#"
+                    onClick={()=> navigate("/MultipleDomain")}
+                  >
+                    Add Multiple Domain
+                  </a>
+                </li>
 
-                    onClick={()=> navigate(`/SingleDNS/${hostedName}/${hostedZoneId}`)}
-                  >
-                    Add single Dns
-                  </a>
-                </li>
                 <li>
                   <a
                     class="inline-block no-underline hover:text-black font-medium text-lg py-2 px-4 lg:-ml-2"
                     href="#"
-                    onClick={()=> navigate(`/MultipleDNS/${hostedName}/${hostedZoneId}`)}
+                    onClick={()=> navigate("/chart")}
                   >
-                    Add Multiple Dns
+                    See Chart
                   </a>
                 </li>
+
+
               </ul>
             </nav>
           </div>
@@ -100,4 +103,4 @@ const Navbar = ({ hostedName , hostedZoneId}) => {
   );
 };
 
-export default Navbar;
+export default DomainNavbar;

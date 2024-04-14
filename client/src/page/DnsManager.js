@@ -25,9 +25,6 @@ function DnsManager() {
 
   const deleteDNS = async (recordsss) => {
     const records = [recordsss];
-
-    // console.log(record);
-
     try {
       const response = await axios.post(
         `${URL}/dns-records/delete`,
@@ -46,19 +43,10 @@ function DnsManager() {
       }
     } catch (error) {
       message.error("Error deleting DNS records:", error);
-      //   alert("Failed to delete DNS records");
     }
   };
 
-  //  const updateDNSRecords = async(e)=>{
 
-  //    try {
-
-  //    } catch (error) {
-
-  //    }
-
-  //  }
 
   const fetchData = async () => {
     try {
@@ -80,39 +68,25 @@ function DnsManager() {
     fetchData();
   }, []);
 
-  // useEffect(()=>{
-  //      fetchData();
-  // },[])
-
+ 
   return (
     <>
 
-     <Navbar/>
-      <div className="text-gray-900 h-400 bg-gray-200">
+     <Navbar hostedName={hostedName}  hostedZoneId={hostedZoneId} />
+
+
+      <div className="text-gray-900 h-400 ">
         <div className="p-11 flex justify-center">
           <h1 className="text-3xl font-bold">Domain Management</h1>
         </div>
 
-        {showSingleeDom ? <SingleDns /> : <MultipleDns />}
+      
 
         <div
           class="order-2 md:order-3 flex flex-wrap items-center justify-end mr-0 md:mr-4"
           id="nav-content"
         >
-          <div class="auth flex items-center w-full md:w-full">
-            <button
-              class="bg-blue-600 text-gray-200  p-2 rounded mr-3  hover:bg-blue-500 hover:text-gray-100"
-              onClick={() => setShowSingleDom(true)}
-            >
-              Add single dns
-            </button>
-            <button
-              class="bg-blue-600 text-gray-200  p-2 rounded  hover:bg-blue-500 hover:text-gray-100"
-              onClick={() => setShowSingleDom(false)}
-            >
-              Add Multiple dns
-            </button>
-          </div>
+ 
         </div>
 
         {openForm && (
@@ -123,33 +97,39 @@ function DnsManager() {
           />
         )}
 
+
+
+
         <div class="p-5 h-screen bg-gray-100">
-          <div class="overflow-auto rounded-lg shadow hidden md:block">
-            <table class="w-full">
-              <thead class="bg-gray-50 border-b-2 border-gray-200">
+          <div class="overflow-auto border-2   rounded-lg shadow hidden md:block">
+            <table class="w-full border-2 border-gray-300">
+              <thead class="bg-gray-300">
                 <tr>
-                  <th class="w-20 p-3 text-sm font-semibold tracking-wide text-left">
-                    Domain Name
+                  <th class="w-20  border-2 p-3 text-2xl font-semibold tracking-wide text-center">
+                    Domain Names
                   </th>
-                  <th class="p-3 text-sm font-semibold tracking-wide text-left">
+                  <th class="w-24 p-3  border-2 text-2xl font-semibold tracking-wide text-center">
                     Type
                   </th>
-                  <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+                  <th class="w-24 p-3   border-2 text-2xl font-semibold tracking-wide text-center">
                     TTL
                   </th>
-                  <th class="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+                  <th class="w-24 p-3  border-2 text-2xl font-semibold tracking-wide text-center">
                     Value
                   </th>
-                  <th class="w-32 p-3 text-sm font-semibold tracking-wide text-left">
+                  <th class="w-32 p-3   border-2 text-2xl font-semibold tracking-wide text-center">
                     Actions
                   </th>
                 </tr>
               </thead>
 
               {dnsRecords.map((value, index) => (
+
+
+
                 <tbody class="divide-y divide-gray-100">
-                  <tr class="bg-white">
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                  <tr class="bg-gray-100">
+                    <td class="p-3 text-xl text-gray-700 whitespace-nowrap">
                       <a
                         href="#"
                         class="font-bold text-blue-500 hover:underline"
@@ -157,15 +137,15 @@ function DnsManager() {
                         {value.Name}
                       </a>
                     </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <td class="p-3 text-xl text-gray-700 whitespace-nowrap">
                       {value.Type}
                     </td>
                     <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
-                      <span class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
+                      <span class="p-1.5 text-xl font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">
                         {value.TTL}
                       </span>
                     </td>
-                    <td class="p-3 text-sm text-gray-700 whitespace-nowrap">
+                    <td class="p-3 text-2xl text-gray-700 whitespace-nowrap">
                       {" "}
                       {value.ResourceRecords[0].Value.split(". ").map(
                         (record, index, array) =>
@@ -224,66 +204,15 @@ function DnsManager() {
                     </td>
                   </tr>
                 </tbody>
+
+
+
+
               ))}
             </table>
           </div>
 
-          {/* <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
-      <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-        <div class="flex items-center space-x-2 text-sm">
-          <div>
-            <a href="#" class="text-blue-500 font-bold hover:underline">#1000</a>
-          </div>
-          <div class="text-gray-500">10/10/2021</div>
-          <div>
-            <span
-              class="p-1.5 text-xs font-medium uppercase tracking-wider text-green-800 bg-green-200 rounded-lg bg-opacity-50">Delivered</span>
-          </div>
-        </div>
-        <div class="text-sm text-gray-700">
-          Kring New Fit office chair, mesh + PU, black
-        </div>
-        <div class="text-sm font-medium text-black">
-          $200.00
-        </div>
-      </div>
-      <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-        <div class="flex items-center space-x-2 text-sm">
-          <div>
-            <a href="#" class="text-blue-500 font-bold hover:underline">#1001</a>
-          </div>
-          <div class="text-gray-500">10/10/2021</div>
-          <div>
-            <span
-              class="p-1.5 text-xs font-medium uppercase tracking-wider text-yellow-800 bg-yellow-200 rounded-lg bg-opacity-50">Shipped</span>
-          </div>
-        </div>
-        <div class="text-sm text-gray-700">
-          Kring New Fit office chair, mesh + PU, black
-        </div>
-        <div class="text-sm font-medium text-black">
-          $200.00
-        </div>
-      </div>
-      <div class="bg-white space-y-3 p-4 rounded-lg shadow">
-        <div class="flex items-center space-x-2 text-sm">
-          <div>
-            <a href="#" class="text-blue-500 font-bold hover:underline">#1002</a>
-          </div>
-          <div class="text-gray-500">10/10/2021</div>
-          <div>
-            <span
-              class="p-1.5 text-xs font-medium uppercase tracking-wider text-gray-800 bg-gray-200 rounded-lg bg-opacity-50">Canceled</span>
-          </div>
-        </div>
-        <div class="text-sm text-gray-700">
-          Kring New Fit office chair, mesh + PU, black
-        </div>
-        <div class="text-sm font-medium text-black">
-          $200.00
-        </div>
-      </div>
-    </div> */}
+         
         </div>
 
 
